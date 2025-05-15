@@ -1,0 +1,81 @@
+class Node{
+    int data;
+    Node next;
+    Node(int data){  // constructor
+        this.data=data;
+        this.next=null;
+    }
+}
+public class LinkedList {
+    static Node head;
+     LinkedList(){
+         head=null;
+     }
+   static void printLink(Node head){
+        Node current=head;
+        while (current!=null){ // condintion part
+            System.out.print(current.data+"---->");
+            current=current.next;
+        }
+       System.out.println("null");
+    }
+
+    static  void insertAtBeg(int data){
+       Node newNode=new Node(data);
+       if(head==null){
+           head=newNode;
+           return;
+       }
+       newNode.next=head;
+       head=newNode;
+    }
+
+  static void insertAtLast(int data){
+         Node newNode=new Node(data);
+         if(head==null){
+             head=newNode;
+             return;
+         }
+         Node curr=head;
+         while (curr.next!=null){
+             curr=curr.next;
+         }
+         curr.next=newNode;
+    }
+
+    static int Length(){
+         Node curr=head;
+         int count=0;
+         while (curr!=null){
+             count++;
+             curr=curr.next;
+         }
+         return count;
+    }
+
+  static  void deleteAtTheBeg(){
+         if(head==null){
+             return;
+         }
+         head=head.next;
+    }
+
+    public static void main(String[] args) {
+        head=new Node(10);
+        head.next=new Node(11);
+        head.next.next=new Node(13);
+        head.next.next.next=new Node(15);
+        head.next.next.next.next=new Node(16);
+        insertAtBeg(9);
+        insertAtBeg(8);
+        insertAtLast(17);
+        insertAtLast(18);
+        System.out.println("Original Element");
+        printLink(head);
+        System.out.println("Element after deletions");
+        deleteAtTheBeg();
+        printLink(head);
+        System.out.println("The length of a linkededlist is "+Length());
+
+    }
+}
